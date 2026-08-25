@@ -12,7 +12,9 @@ Este projeto aplica técnicas de ciência de dados e machine learning sobre uma 
 
 ## 🎯 Problema de Negócio / Pergunta de Pesquisa
 Problema: Identificar, a partir das respostas do questionário AQ-10 e de dados demográficos, padrões associados a um resultado positivo de triagem para TEA.
-Objetivo: Treinar e comparar quatro modelos de classificação (Regressão Logística, Random Forest, XGBoost, SVM) para prever a classe de triagem (Class/ASD), avaliando qual oferece o melhor equilíbrio entre sensibilidade (recall) e precisão.
+
+## Objetivo
+Treinar e comparar quatro modelos de classificação (Regressão Logística, Random Forest, XGBoost, SVM) para prever a classe de triagem (Class/ASD), avaliando qual oferece o melhor equilíbrio entre sensibilidade (recall) e precisão.
 Público/impacto: Times de saúde ou plataformas de triagem que busquem uma ferramenta de apoio inicial para sinalizar respondentes que merecem avaliação clínica mais aprofundada.
 
 ### ⚠️ Nota: este modelo é uma ferramenta de apoio à triagem construída para fins de estudo/portfólio — não substitui avaliação ou diagnóstico clínico profissional.
