@@ -17,6 +17,74 @@ Problema: Identificar, a partir das respostas do questionário AQ-10 e de dados 
 Treinar e comparar quatro modelos de classificação (Regressão Logística, Random Forest, XGBoost, SVM) para prever a classe de triagem (Class/ASD), avaliando qual oferece o melhor equilíbrio entre sensibilidade (recall) e precisão.
 Público/impacto: Times de saúde ou plataformas de triagem que busquem uma ferramenta de apoio inicial para sinalizar respondentes que merecem avaliação clínica mais aprofundada.
 
+
+## 📊 Fonte de Dados
+*Origem:* dataset de triagem Autism Screening Adult (autism_screening.csv), baseado no questionário AQ-10.
+
+*Variáveis principais:* 10 perguntas do questionário (quest1 a quest10, respostas binárias), idade, gênero, etnia, histórico de icterícia ao nascer, parentesco com pessoa autista, país, uso prévio de triagem, resultado numérico do teste, maioridade, quem respondeu o questionário, e a classe-alvo Class/ASD.
+
+*Pré-processamento realizado:*
+Remoção de registros sem idade preenchida
+Padronização de variáveis categóricas binárias (yes/no, m/f etc.) via mapeamento seguro de strings
+Renomeação de todas as colunas para português
+Detecção e remoção de outliers (idades impossíveis, acima de 120 anos)
+Análise de balanceamento das classes antes da modelagem
+## 🛠️ Tecnologias Utilizadas
+*Python:* 
+pandas / numpy — manipulação de dados
+matplotlib / seaborn / plotly — visualização
+scikit-learn — pré-processamento, modelos, métricas, GridSearchCV, validação cruzada
+imbalanced-learn (SMOTE) — balanceamento de classes
+XGBoost
+Jupyter Notebook
+
+
+
+## 🔍 Metodologia
+*Coleta de dados:* leitura da base de triagem autism_screening.csv.
+
+*Limpeza e tratamento:* remoção de nulos, padronização de variáveis binárias, renomeação de colunas.
+
+*Análise exploratória (EDA):* análise univariada (boxplots por questão) e bivariada (cada pergunta do AQ-10 vs. classe TEA), além de análise de balanceamento das classes.
+
+*Tratamento de outliers:* identificação via IQR e remoção de idades impossíveis (> 120 anos).
+
+*Correlação:* matriz de correlação entre variáveis numéricas (heatmap).
+
+*Modelagem:* divisão treino/teste (80/20) e comparação de 4 algoritmos — Regressão Logística, Random Forest, XGBoost e SVM.
+
+*Balanceamento e padronização:* pipelines com SMOTE + StandardScaler para lidar com o desbalanceamento das classes.
+
+*Otimização de hiperparâmetros:* GridSearchCV com validação cruzada estratificada (5-fold), otimizando recall como métrica-alvo (prioridade: minimizar falsos negativos).
+
+*Validação:* avaliação final com matriz de confusão e relatório de classificação no conjunto de teste.
+
+
+
+## 📈 Resultados e Métricas
+Modelo	Accuracy	Precisão (Classe TEA)	Recall (Classe TEA)
+
+Regressão Logística	0.95	0.86	1.00
+
+Random Forest	0.92	0.81	0.98
+
+XGBoost	0.93	0.82	0.98
+
+SVM (kernel RBF)	0.91	0.78	1.00
+
+#### Modelo final escolhido: XGBoost — melhor equilíbrio entre sensibilidade e precisão, com boa capacidade de generalização.
+
+
+
+## 💡Principais Insights e Implicações
+
+*Regressão Logística e SVM* atingiram recall máximo (1.00) na classe positiva — nenhum caso de TEA passou despercebido, o que é especialmente desejável em cenários de triagem, onde um falso negativo é mais custoso que um falso positivo.
+
+*Random Forest e XGBoost* apresentaram menos falsos positivos, com desempenho mais equilibrado entre precisão e recall.
+
+O dataset mostrou padrões fortemente separáveis entre as classes, o que explica as métricas elevadas obtidas por todos os modelos testados.
+
+
 ### ⚠️ Nota: este modelo é uma ferramenta de apoio à triagem construída para fins de estudo/portfólio — não substitui avaliação ou diagnóstico clínico profissional.
 
 
